@@ -1,0 +1,73 @@
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Calendar, MapPin, Users } from "lucide-react";
+import { motion } from "framer-motion";
+
+const EventTab = () => {
+return (
+<div className="p-6 max-w-4xl mx-auto">
+    {/* Event Header */}
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
+        <h1 className="text-3xl font-bold text-center mb-4">Manchester City Football School - Kolkata</h1>
+        <p className="text-lg text-gray-600 text-center mb-6">Join us for an exclusive football training experience with
+            top coaches and immersive sessions.</p>
+    </motion.div>
+
+    {/* Event Details */}
+    <Card className="mb-6">
+        <CardContent className="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="flex items-center gap-2">
+                <Calendar className="text-blue-500" />
+                <span className="text-lg font-semibold">Date:</span>
+                <span className="text-gray-700">March 10, 2025</span>
+            </div>
+            <div className="flex items-center gap-2">
+                <MapPin className="text-blue-500" />
+                <span className="text-lg font-semibold">Venue:</span>
+                <span className="text-gray-700">Salt Lake Stadium, Kolkata</span>
+            </div>
+            <div className="flex items-center gap-2">
+                <Users className="text-blue-500" />
+                <span className="text-lg font-semibold">Eligibility:</span>
+                <span className="text-gray-700">Ages 8-16</span>
+            </div>
+        </CardContent>
+    </Card>
+
+    {/* Registration Section */}
+    <div className="text-center mb-6">
+        <h2 className="text-2xl font-bold mb-2">Register Now</h2>
+        <p className="text-gray-600">Limited slots available! Secure your place today.</p>
+        <Button className="mt-4 px-6 py-3 text-lg">Register Now</Button>
+    </div>
+
+    {/* Schedule Section */}
+    <Card className="mb-6">
+        <CardContent className="p-6">
+            <h2 className="text-2xl font-bold mb-4">Event Schedule</h2>
+            <ul className="list-disc pl-6 text-gray-700">
+                <li>10:00 AM - Warm-up & Drills</li>
+                <li>11:00 AM - Skill Training</li>
+                <li>12:30 PM - Break & Refreshments</li>
+                <li>1:30 PM - Mini Tournament</li>
+                <li>3:00 PM - Closing & Certificates</li>
+            </ul>
+        </CardContent>
+    </Card>
+
+    {/* FAQs */}
+    <Card className="mb-6">
+        <CardContent className="p-6">
+            <h2 className="text-2xl font-bold mb-4">FAQs</h2>
+            <div className="text-gray-700">
+                <p><strong>Q: What should participants bring?</strong></p>
+                <p>A: Football shoes, comfortable sportswear, and a water bottle.</p>
+                <p className="mt-4"><strong>Q: Will there be coaches?</strong></p>
+                <p>A: Yes, experienced Manchester City Football School coaches will be conducting sessions.</p>
+            </div>
+        </CardContent>
+    </Card>
+</div>
+);
+};
