@@ -21,7 +21,7 @@ class uksc_academy(db.Model):
 
 class uksc_contact(db.Model):
     sno1 = db.Column(db.Integer, primary_key=True)
-    name1 = db.column(db.String(200))
+    name1 = db.Column(db.String(200))
     email1 = db.Column(db.String(200))
     phno1 = db.Column(db.String(20))
     msg = db.Column(db.String(5000))
@@ -60,7 +60,7 @@ def home():
             return f"An error occurred: {str(e)}", 500  # Return an error response
 
         # Redirect to a success page or the same page
-        return redirect(url_for('academy'))
+        return redirect(url_for('home'))
     else:
 
         df = pd.read_excel('static/docs/home-page/standings.xlsx')
