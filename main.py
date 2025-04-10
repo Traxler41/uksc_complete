@@ -350,6 +350,6 @@ def academy():
 
 app.route('/coming_soon')
 def coming_soon():
-    return render_template('coming_soon.html')
+    return render_template('coming-soon.html')
 
 app.run(debug=True)
