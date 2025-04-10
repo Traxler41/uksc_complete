@@ -348,4 +348,8 @@ def academy():
     else:
         return render_template('academy.html')
 
+app.route('/coming_soon')
+def coming_soon():
+    return render_template('coming_soon.html')
+
 app.run(debug=True)
