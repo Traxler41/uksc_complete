@@ -1,0 +1,38 @@
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__name__)
+
+# Configure the MySQL database connection
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://uksc:Ebhwtcl_14@localhost/uksc"
+
+# Disable modification tracking to save system resources
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# Initialize the SQLAlchemy extension
+db = SQLAlchemy(app)
+
+***EXPLANATION***
+
+SQLALCHEMY_DATABASE_URI: This defines the database dialect and connection credentials.
+
+Format: mysql://<username>:<password>@<host>/<database>
+
+In this case:
+
+Username: uksc
+
+Password: Ebhwtcl_14
+
+Host: localhost
+
+Database name: uksc
+
+SQLALCHEMY_TRACK_MODIFICATIONS: Set to False to disable Flask-SQLAlchemy’s event system, which helps conserve memory and is generally recommended unless modification tracking is required.
+
+📌 Note:
+Ensure that:
+
+The MySQL server is running and accessible at localhost.
+
+The uksc database exists and the provided credentials have appropriate privileges.
