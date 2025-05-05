@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>UKSC | ABOUT US</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/icomoon/style.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-ui.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.theme.default.min.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.fancybox.min.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-datepicker.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/flaticon/font/flaticon.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/aos.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+
+</head>
+
+<body>
+
+    <div class="site-wrap">
+
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+
+
+        <header class="site-navbar py-4" role="banner">
+
+            <div class="container">
+                <div class="d-flex align-items-center">
+                    <div class="site-logo">
+                        <a href="{{ url_for('home') }}">
+                            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+                        </a>
+                    </div>
+                    <div class="ml-auto">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                <li><a href="{{ url_for('home')}}" class="nav-link">Home</a></li>
+                                <li><a href="{{ url_for('matches') }}" class="nav-link">Matches</a></li>
+                                <li><a href="{{ url_for('players') }}" class="nav-link">Players</a></li>
+                                <li><a href="{{ url_for('academy') }}" class="nav-link">Academy Registration</a></li>
+                                <li class="active"><a href="{{ url_for('about_us')}}" class="nav-link">About Us</a></li>
+                                <li><a href="{{ url_for('contact') }}" class="nav-link">Contact</a></li>
+                            </ul>
+                        </nav>
+
+                        <a href="#"
+                            class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right text-white"><span
+                                class="icon-menu h3 text-white"></span></a>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+
+        <div class="hero overlay"
+            style="background-image: url('{{ url_for('static', filename='images/Sujoy_24.JPG') }}');">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-9 mx-auto text-center">
+                        <h1 class="text-white">About Us</h1>
+                        <p><span>February 24, 2025</span> <span class="mx-3">&bullet;</span> <span>by Admin</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="site-section first-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 blog-content">
+                        <p class="lead">United Kolkata Sports Club (UKSC) is a dynamic football club and academy based
+                            in Kolkata, West Bengal, founded in 2024 with a mission to nurture and develop young
+                            footballing talents. UKSC serves as a comprehensive academy and institution, providing
+                            aspiring footballers with a structured pathway from grassroots to the professional stage.
+                            Guided by the vision of Director Debdut Roychowdhury, UKSC is committed to raising the
+                            standards of football development and competition. As he puts it, “UKSC is an institution
+                            with a solemn promise to elevate sports to the highest standards.” In its debut year, UKSC
+                            made an unprecedented impact, hosting champion men’s and women’s teams that dominated the
+                            Calcutta Football League First Division Championship—one of the most remarkable performances
+                            by a newly formed club. With a relentless drive for excellence, UKSC aspires to compete in
+                            the Indian Super League (ISL) in the near future, establishing itself as a powerhouse in
+                            Indian football.</p>
+                        <p><img src="{{ url_for('static', filename='images/background.JPG') }}" alt="Image"
+                                class="img-fluid">
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container site-section">
+            <div class="row">
+                <div class="col-6 title-section">
+                    <h2 class="heading">Our Blog</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="custom-media d-flex">
+                        <div class="img mr-4">
+                            <img src="{{ url_for('static', filename='images/rvp.jpg') }}" alt="Image" class="img-fluid">
+                        </div>
+                        <div class="text">
+                            <span class="meta">March 05, 2020</span>
+                            <h3 class="mb-4"><a href="{{ url_for('rahul_news') }}">Rahul Venu becomes the Top Scorer of
+                                    CFL First
+                                    Division</a></h3>
+                            <p>Rahul Venu P creates sensation with 13 goals in 15 matches to seal the CFL First Division
+                                Top Scorer
+                                title.
+                            </p>
+                            <p><a href="{{ url_for('rahul_news') }}">Read more</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="custom-media d-flex">
+                        <div class="img mr-4">
+                            <img src="{{ url_for('static', filename='images/sp4.jpg') }}" alt="Image" class="img-fluid">
+                        </div>
+                        <div class="text">
+                            <span class="meta">March 03, 2025</span>
+                            <h3 class="mb-4"><a href="{{ url_for('sameer_news') }}">Sameer Pradhan gets call up from
+                                    Sikkim FA for
+                                    Santosh Trophy</a></h3>
+                            <p>Sikkim FA relies on the UKSC No. 4 Sameer Pradhan for their upcoming Santosh Trophy
+                                2024-25 campaign.
+                            </p>
+                            <p><a href="{{ url_for('sameer_news') }}">Read more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <footer class="footer-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="widget mb-3">
+                            <h3>Our Sponsors</h3>
+                            <ul class="list-unstyled links">
+                                <li><a href="#">United Colors of Benetton</a></li>
+                                <li><a href="#">Glucon-D</a></li>
+                                <li><a href="#">Decathlon</a></li>
+                                <li><a href="#">Nehru Memorial Techno Global Hospital</a></li>
+                                <li><a href="#">Aajkal.in</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="widget mb-3">
+                            <h3>Our other ventures</h3>
+                            <ul class="list-unstyled links">
+                                <li><a href="#">Hatchlab Innovations</a></li>
+                                <li><a href="#">Athleet Jr. Programme</a></li>
+                                <li><a href="#">Contact &amp; Booking</a></li>
+                                <li><a href="#">Tickets</a></li>
+                                <li><a href="#">Coupon</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--<div class="col-lg-3">
+                        <div class="widget mb-3">
+                            <h3>Matches</h3>
+                            <ul class="list-unstyled links">
+                                <li><a href="#">Standings</a></li>
+                                <li><a href="#">World Cup</a></li>
+                                <li><a href="#">La Lega</a></li>
+                                <li><a href="#">Hyper Cup</a></li>
+                                <li><a href="#">World League</a></li>
+                            </ul>
+                        </div>
+                    </div>-->
+
+                    <div class="col-lg-3">
+                        <div class="widget mb-3">
+                            <h3>Social</h3>
+                            <ul class="list-unstyled links">
+                                <li><a href="https://x.com/UKSC_Official">Twitter</a></li>
+                                <li><a href="https://www.facebook.com/unitedkolkatasc">Facebook</a></li>
+                                <li><a href="https://www.instagram.com/unitedkolkatasc/">Instagram</a></li>
+                                <li><a href="https://www.youtube.com/@UnitedKolkataSC">Youtube</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class=" pt-5">
+                            <p>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;
+                                <script>
+                                    document.write(new Date().getFullYear());
+                                </script> All rights reserved
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+
+
+
+
+    </div>
+    <!-- .site-wrap -->
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/jquery.countdown.min.js"></script>
+    <script src="js/bootstrap-datepicker.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/jquery.fancybox.min.js"></script>
+    <script src="js/jquery.sticky.js"></script>
+    <script src="js/jquery.mb.YTPlayer.min.js"></script>
+
+
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

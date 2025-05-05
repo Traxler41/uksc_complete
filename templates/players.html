@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>UKSC | Players</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='fonts/icomoon/style.css') }}">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-ui.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.theme.default.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.theme.default.min.css') }}">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.fancybox.min.css') }}">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-datepicker.css') }}">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='fonts/flaticon/font/flaticon.css') }}">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/aos.css') }}">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+
+</head>
+
+<body>
+
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+
+
+    <header class="site-navbar py-4" role="banner">
+
+      <div class="container">
+        <div class="d-flex align-items-center">
+          <div class="site-logo">
+            <a href="{{ url_for('home') }}">
+              <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+            </a>
+          </div>
+          <div class="ml-auto">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                <li><a href="{{ url_for('home')}}" class="nav-link">Home</a></li>
+                <li><a href="{{ url_for('matches') }}" class="nav-link">Matches</a></li>
+                <li class="active"><a href="{{ url_for('players') }}" class="nav-link">Players</a></li>
+                <li><a href="{{ url_for('academy') }}" class="nav-link">Academy Registration</a></li>
+                <li><a href="{{ url_for('about_us')}}" class="nav-link">About Us</a></li>
+                <li><a href="{{ url_for('contact') }}" class="nav-link">Contact</a></li>
+              </ul>
+            </nav>
+
+            <a href="#"
+              class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right text-white"><span
+                class="icon-menu h3 text-white"></span></a>
+          </div>
+        </div>
+      </div>
+
+    </header>
+
+    <div class="hero overlay" style="background-image: url('{{ url_for('static', filename='images/img5.JPG') }}');">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-5 mx-auto text-center">
+            <h1 class="text-white">Players</h1>
+            <p>Our Squad for Season 2024-25</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-6 title-section">
+            <h2 class="heading">UKSC Men's Senior Officials</h2>
+          </div>
+          <div class="col-6 text-right">
+            <div class="custom-nav">
+            </div>
+          </div>
+
+          <div class="owl-4-slider owl-carousel">
+            <!-- Player 1 -->
+            <div class="item">
+              <div class="video-media">
+                <img src="{{ url_for('static', filename='images/img_1.jpg') }}" alt="Phillip Hobbs"
+                  class="img-fluid player-image">
+                <div class="profile-card">
+                  <img src="{{ url_for('static', filename='images/profile_1.jpg') }}" alt="Phillip Hobbs Profile"
+                    class="img-fluid">
+                  <div class="profile-info">
+                    <h3>Phillip Hobbs</h3>
+                    <p>#10 / Forward</p>
+                    <p>Age: 28</p>
+                    <p>Height: 6'2"</p>
+                    <p>Weight: 185 lbs</p>
+                  </div>
+                </div>
+                <a href="https://vimeo.com/139714818" class="d-flex play-button align-items-center" data-fancybox>
+                  <span class="icon mr-3">
+                    <span class="icon-play"></span>
+                  </span>
+                  <div class="caption">
+                    <span class="meta">#10 / Forward</span>
+                    <h3 class="m-0">Phillip Hobbs</h3>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Player 2 -->
+            <div class="item">
+              <div class="video-media">
+                <img src="{{ url_for('static', filename='images/img_2.jpg') }}" alt="Garry Norris"
+                  class="img-fluid player-image">
+                <div class="profile-card">
+                  <img src="{{ url_for('static', filename='images/profile_2.jpg') }}" alt="Garry Norris Profile"
+                    class="img-fluid">
+                  <div class="profile-info">
+                    <h3>Garry Norris</h3>
+                    <p>#7 / Forward</p>
+                    <p>Age: 25</p>
+                    <p>Height: 6'0"</p>
+                    <p>Weight: 180 lbs</p>
+                  </div>
+                </div>
+                <a href="https://vimeo.com/139714818" class="d-flex play-button align-items-center" data-fancybox>
+                  <span class="icon mr-3">
+                    <span class="icon-play"></span>
+                  </span>
+                  <div class="caption">
+                    <span class="meta">#7 / Forward</span>
+                    <h3 class="m-0">Garry Norris</h3>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Add more players as needed -->
+          </div>
+        </div>
+      </div>
+
+      <div class="site-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-6 title-section">
+              <h2 class="heading">UKSC Men's Senior Officials</h2>
+            </div>
+            <div class="col-6 text-right">
+              <div class="custom-nav">
+              </div>
+            </div>
+          </div>
+
+          <div class="owl-4-slider owl-carousel">
+            <!-- Player 1 -->
+            <div class="item">
+              <div class="video-media">
+                <img src="{{ url_for('static', filename='images/dm.JPG') }}" alt="Head_Coach"
+                  class="img-fluid player-image">
+                <div class="profile-card">
+                  <img src="{{ url_for('static', filename='images/profile_1.jpg') }}" alt="Head Coach Profile"
+                    class="img-fluid">
+                  <div class="profile-info">
+                    <h3>Deepak Kr. Mondal</h3>
+                    <p>Head Coach</p>
+                  </div>
+                </div>
+                <!-- <a href="#" data-fancybox>
+                  <span class="icon mr-3">
+                    <span class="icon-play"></span>
+                  </span>
+                  <div class="caption">
+                    <span class="meta">Head Coach</span>
+                    <h3 class="m-0">Deepak Kr. Mondal</h3>
+                  </div>
+                </a> -->
+              </div>
+            </div>
+
+            <!-- Player 2 -->
+            <div class="item">
+              <div class="video-media">
+                <img src="{{ url_for('static', filename='images/ad.JPG') }}" alt="S&C Coach"
+                  class="img-fluid player-image">
+                <div class="profile-card">
+                  <img src="{{ url_for('static', filename='images/profile_2.jpg') }}" alt="S&C Coach Profile"
+                    class="img-fluid">
+                  <div class="profile-info">
+                    <h3>Aakash Dave</h3>
+                    <p>S&C Coach</p>
+                  </div>
+                </div>
+                <!-- <a href="#" data-fancybox>
+                  <span class="icon mr-3">
+                    <span class="icon-play"></span>
+                  </span>
+                  <div class="caption">
+                    <span class="meta">S&C Coach</span>
+                    <h3 class="m-0">Aakash Dave</h3>
+                  </div>
+                </a> -->
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="video-media">
+                <img src="{{ url_for('static', filename='images/pb.JPG') }}" alt="Asst. Coach"
+                  class="img-fluid player-image">
+                <div class="profile-card">
+                  <img src="{{ url_for('static', filename='images/profile_2.jpg') }}" alt="Asst. Coach Profile"
+                    class="img-fluid">
+                  <div class="profile-info">
+                    <h3>Prosanta B</h3>
+                    <p>Asst. Coach</p>
+                  </div>
+                </div>
+                <!-- <a href="#" data-fancybox>
+                  <span class="icon mr-3">
+                    <span class="icon-play"></span>
+                  </span>
+                  <div class="caption">
+                    <span class="meta">Asst. Coach</span>
+                    <h3 class="m-0">Prosanta Bhattacharjee</h3>
+                  </div>
+                </a> -->
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="video-media">
+                <img src="{{ url_for('static', filename='images/pd.JPG') }}" alt="GK Coach"
+                  class="img-fluid player-image">
+                <div class="profile-card">
+                  <img src="{{ url_for('static', filename='images/profile_2.jpg') }}" alt="GK Coach Profile"
+                    class="img-fluid">
+                  <div class="profile-info">
+                    <h3>Prasanta Dey</h3>
+                    <p>GK Coach</p>
+                  </div>
+                </div>
+                <!--<a href="#" data-fancybox>
+                  <span class="icon mr-3">
+                    <span class="icon-play"></span>
+                  </span>
+                  <div class="caption">
+                    <span class="meta">GK Coach</span>
+                    <h3 class="m-0">Prasanta Dey</h3>
+                  </div>
+                </a>-->
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="video-media">
+                <img src="{{ url_for('static', filename='images/sp.JPG') }}" alt="Team Physiotherapist"
+                  class="img-fluid player-image">
+                <div class="profile-card">
+                  <img src="{{ url_for('static', filename='images/profile_2.jpg') }}" alt="Physio Profile"
+                    class="img-fluid">
+                  <div class="profile-info">
+                    <h3>Soumya Purkait</h3>
+                    <p>Team Physiotherapist</p>
+                  </div>
+                </div>
+                <!-- <a href="#" data-fancybox>
+                  <span class="icon mr-3">
+                    <span class="icon-play"></span>
+                  </span>
+                  <div class="caption">
+                    <span class="meta">Team Physiotherapist</span>
+                    <h3 class="m-0">Soumya Purkait</h3>
+                  </div>
+                </a> -->
+              </div>
+            </div>
+
+            <!-- Add more players as needed -->
+          </div>
+        </div>
+      </div>
+
+      <footer class="footer-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3">
+              <div class="widget mb-3">
+                <h3>Our Sponsors</h3>
+                <ul class="list-unstyled links">
+                  <li><a href="#">United Colors of Benetton</a></li>
+                  <li><a href="#">Glucon-D</a></li>
+                  <li><a href="#">Decathlon</a></li>
+                  <li><a href="#">Nehru Memorial Techno Global Hospital</a></li>
+                  <li><a href="#">Aajkal.in</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <div class="widget mb-3">
+                <h3>Our other ventures</h3>
+                <ul class="list-unstyled links">
+                  <li><a href="#">Hatchlab Innovations</a></li>
+                  <li><a href="#">Athleet Jr. Programme</a></li>
+                  <li><a href="#">Contact &amp; Booking</a></li>
+                  <li><a href="#">Tickets</a></li>
+                  <li><a href="#">Coupon</a></li>
+                </ul>
+              </div>
+            </div>
+            <!--<div class="col-lg-3">
+              <div class="widget mb-3">
+                <h3>Matches</h3>
+                <ul class="list-unstyled links">
+                  <li><a href="#">Standings</a></li>
+                  <li><a href="#">World Cup</a></li>
+                  <li><a href="#">La Lega</a></li>
+                  <li><a href="#">Hyper Cup</a></li>
+                  <li><a href="#">World League</a></li>
+                </ul>
+              </div>
+            </div>-->
+
+            <div class="col-lg-3">
+              <div class="widget mb-3">
+                <h3>Social</h3>
+                <ul class="list-unstyled links">
+                  <li><a href="https://x.com/UKSC_Official">Twitter</a></li>
+                  <li><a href="https://www.facebook.com/unitedkolkatasc">Facebook</a></li>
+                  <li><a href="https://www.instagram.com/unitedkolkatasc/">Instagram</a></li>
+                  <li><a href="https://www.youtube.com/@UnitedKolkataSC">Youtube</a></li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row text-center">
+            <div class="col-md-12">
+              <div class=" pt-5">
+                <p>
+                  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                  Copyright &copy;
+                  <script>
+                    document.write(new Date().getFullYear());
+                  </script> All rights reserved
+                  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </footer>
+
+
+
+
+    </div>
+    <!-- .site-wrap -->
+
+    <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery-migrate-3.0.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery-ui.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.stellar.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.countdown.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.easing.1.3.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/aos.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.fancybox.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.sticky.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.mb.YTPlayer.min.js') }}"></script>
+
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+
+</html>

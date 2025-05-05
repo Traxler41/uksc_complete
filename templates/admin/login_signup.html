@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | UKSC</title>
+    <style>
+        :root {
+            --primary: #1e3c72;
+            --secondary: #2a5298;
+            --error: #c62828;
+            --success: #2e7d32;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            max-height: 90vh;
+        }
+
+        .left-section {
+            flex: 1;
+            padding: 40px;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .left-section h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .left-section p {
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .club-logo {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+            object-fit: contain;
+        }
+
+        .right-section {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            max-height: 100%;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            min-height: min-content;
+        }
+
+        .tab-container {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 10;
+            padding-top: 10px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            color: #777;
+        }
+
+        .tab.active {
+            border-bottom: 3px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .form-content {
+            flex-grow: 1;
+            position: relative;
+            min-height: 400px;
+        }
+
+        .form {
+            position: absolute;
+            width: 100%;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            padding-bottom: 20px;
+        }
+
+        .form.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary);
+        }
+
+        .message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            display: none;
+        }
+
+        .error {
+            background-color: #ffebee;
+            color: var(--error);
+        }
+
+        .success {
+            background-color: #e8f5e9;
+            color: var(--success);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                max-width: 500px;
+                max-height: 95vh;
+            }
+
+            .left-section,
+            .right-section {
+                padding: 25px;
+            }
+
+            .left-section {
+                flex: none;
+                max-height: 40vh;
+                overflow-y: auto;
+            }
+
+            .right-section {
+                flex: 1;
+                overflow-y: auto;
+            }
+
+            .form-group {
+                margin-bottom: 12px;
+            }
+
+            .form-group input {
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left-section">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="UKSC Logo" class="club-logo">
+            <h1>UKSC Admin Portal</h1>
+            <p>Manage your club's website content, matches, standings, and media from this secure admin panel.</p>
+            <p>Please login with your credentials or contact the system administrator for access.</p>
+        </div>
+
+        <div class="right-section">
+            <div class="form-container">
+                <div class="tab-container">
+                    <div class="tab active" onclick="switchTab('login')">Login</div>
+                    <div class="tab" onclick="switchTab('signup')">Sign Up</div>
+                </div>
+
+                <div class="form-content">
+                    <!-- Login Form -->
+                    <form id="loginForm" class="form active" method="POST" action="{{ url_for('admin_login') }}">
+                        <div class="form-group">
+                            <label for="loginEmail">Email</label>
+                            <input type="email" id="loginEmail" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" id="loginPassword" name="password" required>
+                        </div>
+
+                        <button type="submit" class="btn">Login</button>
+
+                        <div id="loginMessage" class="message"></div>
+                    </form>
+
+                    <!-- Signup Form -->
+                    <form id="signupForm" class="form" method="POST" action="{{ url_for('admin_signup') }}">
+                        <div class="form-group">
+                            <label for="signupName">Full Name</label>
+                            <input type="text" id="signupName" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="signupEmail">Email</label>
+                            <input type="email" id="signupEmail" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="signupPassword">Password</label>
+                            <input type="password" id="signupPassword" name="password" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" id="confirmPassword" name="confirm_password" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="adminKey">Admin Secret Key</label>
+                            <input type="password" id="adminKey" name="admin_key" required>
+                        </div>
+
+                        <button type="submit" class="btn">Create Account</button>
+
+                        <div id="signupMessage" class="message"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        function switchTab(tabName) {
+            // Update active tab
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            // Update active form
+            const forms = document.querySelectorAll('.form');
+            forms.forEach(form => form.classList.remove('active'));
+            document.getElementById(tabName + 'Form').classList.add('active');
+
+            // Clear messages
+            document.querySelectorAll('.message').forEach(msg => {
+                msg.style.display = 'none';
+            });
+        }
+
+        // Initialize to login tab when page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            switchTab('login');
+        });
+
+        // Login form submission handler
+        document.getElementById('loginForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+
+            try {
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                const result = await response.json();
+                const messageDiv = document.getElementById('loginMessage');
+
+                if (result.success) {
+                    // Successful login - redirect to dashboard
+                    window.location.href = result.redirect;
+                } else {
+                    // Show error message
+                    messageDiv.textContent = result.message;
+                    messageDiv.className = 'message error';
+                    messageDiv.style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                const messageDiv = document.getElementById('loginMessage');
+                messageDiv.textContent = "Login failed. Please try again.";
+                messageDiv.className = 'message error';
+                messageDiv.style.display = 'block';
+            }
+        });
+
+        // Signup form submission
+        document.getElementById('signupForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            // Client-side validation
+            if (document.getElementById('signupPassword').value !==
+                document.getElementById('confirmPassword').value) {
+                const messageDiv = document.getElementById('signupMessage');
+                messageDiv.textContent = "Passwords don't match!";
+                messageDiv.className = 'message error';
+                messageDiv.style.display = 'block';
+                return;
+            }
+
+            const formData = new FormData(this);
+
+            try {
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+                const messageDiv = document.getElementById('signupMessage');
+
+                messageDiv.textContent = result.message;
+                messageDiv.className = result.success ? 'message success' : 'message error';
+                messageDiv.style.display = 'block';
+
+                if (result.success) {
+                    // Clear form on successful signup
+                    this.reset();
+
+                    // Switch to login tab after delay
+                    setTimeout(() => {
+                        switchTab('login');
+                    }, 1500);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                const messageDiv = document.getElementById('signupMessage');
+                messageDiv.textContent = "An error occurred. Please try again.";
+                messageDiv.className = 'message error';
+                messageDiv.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+
+</html>

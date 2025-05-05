@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Standings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f3;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #222;
+            color: #fff;
+            padding: 20px;
+            font-size: 1.6em;
+            text-align: center;
+        }
+
+        main {
+            padding: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #444;
+            color: white;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 90%;
+            padding: 6px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .button-row {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            font-size: 1em;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        Edit League Standings
+    </header>
+    <main>
+        <form method="POST" action="/update_standings">
+            <table id="standings-table">
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Team</th>
+                        <th>Matches Played</th>
+                        <th>Points</th>
+                        <th>Wins</th>
+                        <th>Draws</th>
+                        <th>Losses</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for team in standings %}
+                    <tr>
+                        <td><input type="number" name="position_{{ team.id }}" value="{{ loop.index }}"></td>
+                        <td><input type="text" name="team_{{ team.id }}" value="{{ team.name }}"></td>
+                        <td><input type="number" name="matches_{{ team.id }}" value="{{ team.matches_played }}"></td>
+                        <td><input type="number" name="points_{{ team.id }}" value="{{ team.points }}"></td>
+                        <td><input type="number" name="wins_{{ team.id }}" value="{{ team.wins }}"></td>
+                        <td><input type="number" name="draws_{{ team.id }}" value="{{ team.draws }}"></td>
+                        <td><input type="number" name="losses_{{ team.id }}" value="{{ team.losses }}"></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="button-row">
+                <button type="button" onclick="addRow()">Add Team</button>
+                <button type="submit">Update Standings</button>
+            </div>
+        </form>
+    </main>
+
+    <script>
+        let teamCounter = {{ standings| length }};
+
+        function addRow() {
+            teamCounter += 1;
+            const table = document.getElementById("standings-table").getElementsByTagName('tbody')[0];
+            const row = table.insertRow();
+
+            const positionCell = row.insertCell(0);
+            const teamCell = row.insertCell(1);
+            const matchesCell = row.insertCell(2);
+            const pointsCell = row.insertCell(3);
+            const winsCell = row.insertCell(4);
+            const drawsCell = row.insertCell(5);
+            const lossesCell = row.insertCell(6);
+
+            positionCell.innerHTML = `<input type="number" name="position_new_${teamCounter}" value="${teamCounter}">`;
+            teamCell.innerHTML = `<input type="text" name="team_new_${teamCounter}" value="">`;
+            matchesCell.innerHTML = `<input type="number" name="matches_new_${teamCounter}" value="0">`;
+            pointsCell.innerHTML = `<input type="number" name="points_new_${teamCounter}" value="0">`;
+            winsCell.innerHTML = `<input type="number" name="wins_new_${teamCounter}" value="0">`;
+            drawsCell.innerHTML = `<input type="number" name="draws_new_${teamCounter}" value="0">`;
+            lossesCell.innerHTML = `<input type="number" name="losses_new_${teamCounter}" value="0">`;
+        }
+    </script>
+</body>
+
+</html>

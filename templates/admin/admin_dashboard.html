@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | UKSC</title>
+    <style>
+        :root {
+            --primary: #1e3c72;
+            --secondary: #2a5298;
+            --error: #c62828;
+            --success: #2e7d32;
+            --background: #f8f9fa;
+            --light-grey: #f1f1f1;
+            --dark-grey: #333;
+            --border-color: #ddd;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            background-image: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            margin-top: 30px;
+        }
+
+        .left-section {
+            background-color: var(--primary);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            flex: 0 0 250px;
+            border-right: 2px solid #e0e0e0;
+        }
+
+        .left-section h1 {
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        .left-section p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .club-logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 20px;
+            object-fit: contain;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        .right-section {
+            flex: 1;
+            padding: 30px;
+            background-color: var(--light-grey);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .panel {
+            background-color: white;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .panel h2 {
+            margin-bottom: 15px;
+            font-size: 22px;
+            color: var(--primary);
+        }
+
+        .panel table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .panel th,
+        .panel td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        .panel th {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-grey);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background-color: #fafafa;
+            margin-bottom: 8px;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="file"]:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary);
+        }
+
+        .delete-btn {
+            padding: 8px 15px;
+            background-color: var(--error);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background-color: #d32f2f;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-section,
+            .right-section {
+                padding: 20px;
+            }
+
+            .panel h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <h1>Admin Dashboard</h1>
+
+        <!-- Home Page Names -->
+        <section class="panel">
+            <h2>Update Home Page Names</h2>
+            <form method="POST" action="{{ url_for('update_home_page_names') }}" enctype="multipart/form-data">
+                {% for row in home_page_names %}
+                <div class="form-row">
+                    <input type="text" name="name_{{ row.id }}" value="{{ row.name }}" required>
+                    <img src="{{ url_for('static', filename=row.photo) }}" alt="Current Photo" width="80">
+                    <input type="file" name="photo_{{ row.id }}">
+                    <input type="hidden" name="old_photo_{{ row.id }}" value="{{ row.photo }}">
+                </div>
+                {% endfor %}
+                <button type="submit" class="btn">Update Names</button>
+            </form>
+        </section>
+
+        <!-- League Standings -->
+        <section class="panel">
+            <h2>Update League Standings</h2>
+            <form method="POST" action="{{ url_for('update_standings') }}" id="standings-form">
+                <table id="standings-table">
+                    <thead>
+                        <tr>
+                            <th>Position</th>
+                            <th>Team</th>
+                            <th>Matches Played</th>
+                            <th>Points</th>
+                            <th>Wins</th>
+                            <th>Draws</th>
+                            <th>Losses</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in standings %}
+                        <tr>
+                            <td><input type="number" name="position_{{ row.id }}" value="{{ row.position }}" required>
+                            </td>
+                            <td><input type="text" name="team_{{ row.id }}" value="{{ row.team }}" required></td>
+                            <td><input type="number" name="matches_played_{{ row.id }}" value="{{ row.matches_played }}"
+                                    required></td>
+                            <td><input type="number" name="points_{{ row.id }}" value="{{ row.points }}" required></td>
+                            <td><input type="number" name="wins_{{ row.id }}" value="{{ row.wins }}" required></td>
+                            <td><input type="number" name="draws_{{ row.id }}" value="{{ row.draws }}" required></td>
+                            <td><input type="number" name="losses_{{ row.id }}" value="{{ row.losses }}" required></td>
+                            <td><button type="button" onclick="removeRow(this)">Delete</button></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <button type="button" onclick="addRow()">Add Row</button>
+                <button type="submit" class="btn">Update Standings</button>
+            </form>
+        </section>
+
+        <!-- Matches Names -->
+        <section class="panel">
+            <h2>Update Match Names</h2>
+            <form method="POST" action="{{ url_for('update_matches_names') }}" enctype="multipart/form-data">
+                {% for row in matches_names %}
+                <div class="form-row">
+                    <input type="text" name="match_name_{{ row.id }}" value="{{ row.match_name }}" required>
+                    <img src="{{ url_for('static', filename=row.photo) }}" alt="Current Photo" width="80">
+                    <input type="file" name="match_photo_{{ row.id }}">
+                    <input type="hidden" name="old_match_photo_{{ row.id }}" value="{{ row.photo }}">
+                </div>
+                {% endfor %}
+                <button type="submit" class="btn">Update Matches</button>
+            </form>
+        </section>
+
+        <!-- Academy Contacts -->
+        <section class="panel">
+            <h2>UKSC Academy Contacts</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Course</th>
+                        <th>Age</th>
+                        <th>Address</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in uksc_academy %}
+                    <tr>
+                        <td>{{ row.sno }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.email }}</td>
+                        <td>{{ row.phno }}</td>
+                        <td>{{ row.crs }}</td>
+                        <td>{{ row.age }}</td>
+                        <td>{{ row.address }}</td>
+                        <td>{{ row.date }}</td>
+                        <td><button type="button" onclick="deleteAcademyRow({{ row.sno }})">Delete</button></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Contact Queries -->
+        <section class="panel">
+            <h2>Contact Queries</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Message</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in uksc_contact %}
+                    <tr>
+                        <td>{{ row.sno1 }}</td>
+                        <td>{{ row.name1 }}</td>
+                        <td>{{ row.email1 }}</td>
+                        <td>{{ row.phno1 }}</td>
+                        <td>{{ row.msg }}</td>
+                        <td>{{ row.date }}</td>
+                        <td><button type="button" onclick="deleteContactRow({{ row.sno1 }})">Delete</button></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+    </div>
+
+    <script>
+        // Add new row in Standings table
+        function addRow() {
+            const table = document.getElementById('standings-table').getElementsByTagName('tbody')[0];
+            const rowCount = table.rows.length;
+            const row = table.insertRow(rowCount);
+
+            row.innerHTML = `
+        <td><input type="number" name="position_new_${rowCount}" required></td>
+        <td><input type="text" name="team_new_${rowCount}" required></td>
+        <td><input type="number" name="matches_played_new_${rowCount}" required></td>
+        <td><input type="number" name="points_new_${rowCount}" required></td>
+        <td><input type="number" name="wins_new_${rowCount}" required></td>
+        <td><input type="number" name="draws_new_${rowCount}" required></td>
+        <td><input type="number" name="losses_new_${rowCount}" required></td>
+        <td><button type="button" onclick="removeRow(this)">Delete</button></td>
+    `;
+        }
+
+        // Remove a row from Standings table
+        function removeRow(button) {
+            const row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+
+        // Delete a UKSC Academy record
+        function deleteAcademyRow(sno) {
+            if (confirm("Are you sure you want to delete this academy record?")) {
+                fetch(`/delete_academy/${sno}`, {
+                    method: 'POST'
+                }).then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        alert('Error deleting record.');
+                    }
+                });
+            }
+        }
+
+        // Delete a Contact Query
+        function deleteContactRow(sno1) {
+            if (confirm("Are you sure you want to delete this contact query?")) {
+                fetch(`/delete_contact/${sno1}`, {
+                    method: 'POST'
+                }).then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        alert('Error deleting record.');
+                    }
+                });
+            }
+        }
+
+    </script>
+</body>
+
+</html>

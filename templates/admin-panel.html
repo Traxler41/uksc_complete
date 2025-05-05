@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #111;
+            color: #fff;
+            padding: 15px 20px;
+            font-size: 1.5em;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 1.3em;
+        }
+
+        input,
+        select,
+        textarea {
+            margin: 5px 0 15px;
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        img {
+            max-height: 80px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        Admin Panel
+    </header>
+    <main>
+
+        <!-- SECTION 1: Standings -->
+        <section>
+            <h2>Edit Standings</h2>
+            <form method="POST" action="/edit_standings">
+                {% for team in standings %}
+                <label>Team {{ loop.index }}:</label>
+                <input name="team_{{ team.id }}_name" value="{{ team.name }}">
+                <input name="team_{{ team.id }}_points" value="{{ team.points }}" type="number">
+                <input name="team_{{ team.id }}_wins" value="{{ team.wins }}" type="number">
+                <input name="team_{{ team.id }}_draws" value="{{ team.draws }}" type="number">
+                <input name="team_{{ team.id }}_losses" value="{{ team.losses }}" type="number">
+                <hr>
+                {% endfor %}
+                <button type="submit">Update Standings</button>
+            </form>
+        </section>
+
+        <!-- SECTION 2: Home Page Names -->
+        <section>
+            <h2>Edit Home Page Content</h2>
+            <form method="POST" action="/update_home_page">
+                {% for row in home_page_data %}
+                <label>{{ row.label }}:</label>
+                <input name="field_{{ row.id }}" value="{{ row.value }}">
+                {% endfor %}
+                <button type="submit">Update Home Page</button>
+            </form>
+        </section>
+
+        <!-- SECTION 3: Matches Page Data -->
+        <section>
+            <h2>Edit Matches Page Content</h2>
+            <form method="POST" action="/update_matches_page">
+                {% for match in matches_data %}
+                <label>Match {{ loop.index }} - {{ match.match_name }}:</label>
+                <input name="match_{{ match.id }}_name" value="{{ match.name }}">
+                <input name="match_{{ match.id }}_date" value="{{ match.date }}" type="date">
+                <hr>
+                {% endfor %}
+                <button type="submit">Update Matches</button>
+            </form>
+        </section>
+
+        <!-- SECTION 4: Upload Team Logos -->
+        <section>
+            <h2>Upload/Replace Team Logos</h2>
+            <form method="POST" action="/upload_logos" enctype="multipart/form-data">
+                {% for team in teams %}
+                <label>{{ team.name }} Logo:</label>
+                {% if team.logo_path %}
+                <img src="{{ url_for('static', filename=team.logo_path) }}">
+                {% endif %}
+                <input type="file" name="logo_{{ team.id }}">
+                {% endfor %}
+                <button type="submit">Upload Logos</button>
+            </form>
+        </section>
+
+    </main>
+</body>
+
+</html>
